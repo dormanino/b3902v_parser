@@ -44,51 +44,6 @@ with open(os.getcwd() + '\\B3902V.TXT', 'r') as file:
     txtfile = (line.rstrip('\n') for line in file.readlines())
 
 
-
-    for line in readlines:
-        # 0) Fabrica
-        # 1) Variante
-        # 2) BM
-        # 3) Validade de
-        # 4) Validade ate
-        # 5) Ind de validade
-        # 6) Code prefix
-        # 7) Code
-        # 8) BG
-        # 9) Descricao do agregado
-        # 10) Descricao do code
-        # 11) Plausibilidade
-
-        data_list.append(tuple(
-            [
-                line[0:3].strip(' '),
-                line[3:24].strip(' '),
-                line[24:45].strip(' '),
-                line[45:53].strip(' '),
-                line[53:61].strip(' '),
-                line[61:62].strip(' '),
-                line[62:64].strip(' '),
-                line[64:83].strip(' '),
-                line[83:85].strip(' '),
-                line[85:115].strip(' '),
-                line[115:145].strip(' '),
-                line[145:146].strip(' ')
-            ]
-        ))
-
-    # sort by variant string (key=lambda x: x[1]) since index 1 is it
-    data_list_srt = sorted(data_list, key=lambda x: x[1])
-
-    date = datetime.date.today()
-    date_string = date.strftime('%y%m%d')
-
-    with open(date_string + '_' + 'variant_data_raw', 'w') as f:
-        json.dump(data_list_srt, f, indent=4, sort_keys=True, ensure_ascii=False)
-    var_list = None
-    f = None
-
-
-
     readlines = None
     data_list = None
 
