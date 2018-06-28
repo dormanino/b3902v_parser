@@ -35,7 +35,8 @@ def it2():
     # provide txt file
     # (62, 64), (64, 83), (83, 85), (115, 145)
     # (0, 3)
-    slices = [(3, 24), (62, 64), (64, 83), (83, 85), (115, 145), (85, 115)]
+    # [(62, 64), (64, 83), (83, 85), (115, 145), (85, 115)
+    slices = [(3, 24)]
     start_time = time.time()
     data_list = [[line[slice(start, end)].strip()
                  for start, end in [part for part in slices]]
@@ -48,10 +49,20 @@ def it2():
 
     data_list_srt = sorted(data_list, key=lambda x: x[0])
 
+    start = 0
+    end = 0
+
     for index, obj in enumerate(data_list_srt):
         if index == 0:
+            start = index
+        elif data_list_srt[index][0] != data_list_srt[index - 1][0]:
 
+            end = index - 1
+            dat_tuple = (start, end)
+            start = index
 
+        else:
+            pass
     date = datetime.date.today()
     date_string = date.strftime('%y%m%d')
 
